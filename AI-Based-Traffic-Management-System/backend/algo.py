@@ -108,7 +108,8 @@ def genetic_algorithm(pop_size, num_lights, max_iter, green_min, green_max, cycl
     
     return best_sol, best_delays
 
-def optimize_traffic(cars):
+# backend/algo.py
+def optimize_traffic(cars, emergency_vehicle_detected):
     # Default parameters
     pop_size = 400
     num_lights = 4
@@ -119,6 +120,12 @@ def optimize_traffic(cars):
     mutation_rate = 0.02
     pinv = 0.2
     beta = 8
+
+    # If an emergency vehicle is detected, prioritize its direction
+    if emergency_vehicle_detected:
+        # Assuming the emergency vehicle is detected in the north direction
+        # Adjust the green time for the north direction
+        cars[0] = max(cars)  # Set the north direction to have the highest car count
 
     # Run Genetic Algorithm with default parameters
     best_sol, best_delays = genetic_algorithm(pop_size, num_lights, max_iter, green_min, green_max, cycle_time, mutation_rate, pinv, beta, cars)

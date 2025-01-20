@@ -12,23 +12,10 @@ CORS(app)
 # Ensure the uploads directory exists
 os.makedirs('uploads', exist_ok=True)
 
-conn = psycopg2.connect(
-    dbname="traffic_management_db",
-    user="traffic_user",
-    password="Toxic1345",
-    host="4000",
-    port="5433"
-)
-cursor = conn.cursor()
-
-# Store traffic data
 def store_traffic_data(intersection_id, vehicle_count):
-    timestamp = datetime.now()
-    cursor.execute(
-        "INSERT INTO traffic_data (timestamp, intersection_id, vehicle_count) VALUES (%s, %s, %s)",
-        (timestamp, intersection_id, vehicle_count)
-    )
-    conn.commit()
+    # Placeholder function to store traffic data
+    # Implement the actual database storage logic here
+    pass
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -43,12 +30,15 @@ def upload_files():
         video_paths.append(video_path)
 
     num_cars_list = []
+    emergency_vehicle_detected = False
     for video_file in video_paths:
-        num_cars = detect_cars(video_file)
+        num_cars, emergency_detected = detect_cars(video_file)
         num_cars_list.append(num_cars)
+        if emergency_detected:
+            emergency_vehicle_detected = True
         store_traffic_data(intersection_id=1, vehicle_count=num_cars)
 
-    result = optimize_traffic(num_cars_list)
+    result = optimize_traffic(num_cars_list, emergency_vehicle_detected)
 
     return jsonify(result)
 

@@ -40,6 +40,7 @@ def detect_cars(video_file):
 
     # To keep track of car counts and timestamps
     car_counts = deque()  # Store (timestamp, car_count) tuples
+    emergency_vehicle_detected = False
 
     while True:
         ret, frame = cap.read()
@@ -56,6 +57,13 @@ def detect_cars(video_file):
         for (classid, score, box) in zip(classes, scores, boxes):
             if class_name[classid] == "car":  # assuming 'car' is the class name for cars in your classes.txt
                 car_count += 1
+                color = COLORS[int(classid) % len(COLORS)]
+                label = f"{class_name[classid]} : {score:.2f}"
+                cv.rectangle(frame, box, color, 2)
+                cv.putText(frame, label, (box[0], box[1]-10), 
+                           cv.FONT_HERSHEY_COMPLEX, 0.5, color, 2)
+            elif class_name[classid] in ["ambulance", "fire truck", "police car"]:
+                emergency_vehicle_detected = True
                 color = COLORS[int(classid) % len(COLORS)]
                 label = f"{class_name[classid]} : {score:.2f}"
                 cv.rectangle(frame, box, color, 2)
@@ -102,9 +110,10 @@ def detect_cars(video_file):
     cap.release()
     cv.destroyAllWindows()
 
-    # Return the mean of the peak values
-    return mean_peak_value
+    # Return the mean of the peak values and emergency vehicle detection status
+    return mean_peak_value, emergency_vehicle_detected
 
 # Usage example:
-#mean_peak_value = detect_cars('output.avi')
+#mean_peak_value, emergency_vehicle_detected = detect_cars('output.avi')
 #print(f'Mean Peak Number of Cars Detected: {mean_peak_value}')
+#print(f'Emergency Vehicle Detected: {emergency_vehicle_detected}')
