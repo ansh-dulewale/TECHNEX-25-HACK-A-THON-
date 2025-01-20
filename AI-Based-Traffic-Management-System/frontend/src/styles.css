@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #000;
-    --secondary-color: #f1f3f4;
+    --primary-color: #007bff;
+    --secondary-color: #f8f9fa;
+    --accent-color: #28a745;
     --font-family: 'Poppins', sans-serif;
     --font-size-small: 16px;
     --font-size-medium: 24px;
-    --font-size-large: 26px;
+    --font-size-large: 32px;
     --padding-small: 10px;
     --padding-medium: 20px;
     --padding-large: 50px;
     --border-radius: 10px;
-    --box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 body {
@@ -19,126 +20,158 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: linear-gradient(135deg, rgb(152, 137, 147), rgb(166, 141, 168));
+    color: #333;
 }
 
 .App h1 {
-    font-size: var(--font-size-medium);
-    padding: var(--padding-small) 0 var(--padding-small) 100px;
+    font-size: var(--font-size-large);
+    padding: var(--padding-small) 0;
+    color: var(--primary-color);
+    text-align: center;
 }
 
 hr {
-    color: var(--secondary-color);
+    border: 0;
+    height: 1px;
+    background: var(--secondary-color);
+    margin: var(--padding-medium) 0;
 }
 
 .main-container {
     display: flex;
-    padding: 0 100px;
-    gap: 100px;
-    align-items: flex-start;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--padding-large);
+    gap: var(--padding-large);
 }
 
 .left {
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .hero {
     margin: var(--padding-large) auto;
+    text-align: center;
 }
 
 .hero h2 {
     font-size: var(--font-size-large);
     margin-bottom: var(--padding-medium);
+    color: var(--accent-color);
 }
 
-.hero p  {
+.hero p {
     font-size: var(--font-size-small);
+    color: #555;
 }
 
 .upload input[type="file"] {
-    margin: var(--padding-small) var(--padding-medium) var(--padding-medium) 0;
+    margin: var(--padding-small) 0;
     font-size: var(--font-size-small);
-    width: 50%;
+    width: 100%;
     background-color: var(--secondary-color);
     padding: var(--padding-small);
     border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+.upload input[type="file"]:hover {
+    border-color: var(--primary-color);
 }
 
 .upload, .result {
     margin: auto;
     margin-bottom: var(--padding-large);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
 }
 
 .upload h2, .result h2 {
     font-size: var(--font-size-medium);
+    color: var(--primary-color);
 }
 
 .upload p, .result p {
     font-size: var(--font-size-small);
+    color: #666;
 }
 
 .upload button {
     background: var(--primary-color);
-    width: 53%;
+    width: 100%;
     color: #fff;
     padding: var(--padding-small);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     font-size: var(--font-size-small);
     cursor: pointer;
     box-shadow: var(--box-shadow);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.upload button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
 .loader {
     font-size: var(--font-size-small);
     margin-top: var(--padding-large);
+    color: var(--primary-color);
 }
 
 .result {
     margin-top: var(--padding-medium);
-    width: 50%;
-    height: 400px;
-    padding-left: var(--padding-medium);
+    width: 100%;
+    padding: var(--padding-medium);
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .result .placeholder {
     text-align: center;
     margin: 130px 0;
     font-size: 20px;
+    color: #999;
 }
 
 .result p span {
     font-size: 40px;
+    color: var(--accent-color);
 }
 
 .result ul {
     list-style: none;
-    padding-left: var(--padding-medium);
+    padding-left: 0;
 }
 
 .result li {
     font-size: var(--font-size-small);
     margin: 5px 0;
+    color: #444;
 }
 
 @media (max-width: 1024px) {
     .main-container {
-        padding: 0 30px;
-        gap: 30px;
+        padding: var(--padding-medium);
+        gap: var(--padding-medium);
     }
 
     .upload button {
-        width: 90%;
+        width: 100%;
     }
 
     .upload input[type="file"] {
-        width: 85%;
+        width: 100%;
     }
 
     .result {
-        width: 80%;
+        width: 100%;
         padding: var(--padding-medium);
     }
 }

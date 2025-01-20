@@ -3,6 +3,8 @@ body {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #e09, #d0e);
+  color: #333;
 }
 
 code {
