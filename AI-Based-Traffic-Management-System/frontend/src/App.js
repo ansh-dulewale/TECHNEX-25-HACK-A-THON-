@@ -27,7 +27,7 @@ function App() {
 
     try {
       // Use a placeholder for the backend URL (update this after deployment)
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000' || 'https://technex-backend.onrender.com';
       const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
