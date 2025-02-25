@@ -3,7 +3,6 @@ from flask_cors import CORS
 import os
 from yolov4 import detect_cars
 from algo import optimize_traffic
-import psycopg2
 from datetime import datetime
 
 app = Flask(__name__)
