@@ -52,7 +52,7 @@ def upload_files():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 # filepath: AI-Based-Traffic-Management-System/backend/algo.py
 import pandas as pd
