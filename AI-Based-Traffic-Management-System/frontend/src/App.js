@@ -26,14 +26,17 @@ function App() {
     selectedFiles.forEach(file => formData.append('videos', file));
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      // Use a placeholder for the backend URL (update this after deployment)
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setResult(response.data);
-      console.log(response);
+      console.log('Response from backend:', response.data);
       setLoading(false);
     } catch (error) {
       console.error('Error uploading files:', error);
+      setResult({ error: 'Failed to process videos. Please try again or check the backend.' });
       setLoading(false);
     }
   };

@@ -9,6 +9,16 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
+
+@app.route('/')
+def hello():
+    return "Backend is live!"
+
+@app.route('/api/traffic')  # Example endpoint for traffic data
+def get_traffic():
+    # Your traffic logic here (e.g., using YOLO)
+    return {"status": "traffic data"}
+
 # Ensure the uploads directory exists
 os.makedirs('uploads', exist_ok=True)
 
@@ -42,9 +52,8 @@ def upload_files():
 
     return jsonify(result)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
-
 
 # filepath: AI-Based-Traffic-Management-System/backend/algo.py
 import pandas as pd
