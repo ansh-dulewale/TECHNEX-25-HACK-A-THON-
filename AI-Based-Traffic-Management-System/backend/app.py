@@ -6,7 +6,8 @@ from algo import optimize_traffic
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)
+# Allow CORS only for your frontend domain
+CORS(app, resources={r"/upload": {"origins": "https://technex-frontend.onrender.com"}})
 
 
 @app.route('/')
