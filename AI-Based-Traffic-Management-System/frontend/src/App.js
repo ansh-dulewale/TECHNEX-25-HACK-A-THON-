@@ -27,7 +27,7 @@ function App() {
 
     try {
       // Use only the environment variable for the backend URL
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const BACKEND_URL = ${"https://traffic-backend.onrender.com/upload"};
       if (!BACKEND_URL) {
         throw new Error('Backend URL is not configured. Please set REACT_APP_BACKEND_URL.');
       }
